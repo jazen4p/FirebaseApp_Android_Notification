@@ -9,3 +9,7 @@ Client Side (Android)
   )
 •	Download and Move the google-services.json file you just downloaded into your Android app module root directory.
 •	Add firebase sdk
+
+In order to send push notification you will need a server side application.
+For spring boot application you can refer to the following link : https://github.com/Firoz-Hasan/SpringBootPushNotification
+
