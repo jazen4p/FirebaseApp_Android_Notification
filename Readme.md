@@ -27,3 +27,5 @@ Other than this class all the other classes are very basic and easy to understan
 In order to send push notification you will need a server side application.
 For spring boot application you can refer to the following link : https://github.com/Firoz-Hasan/SpringBootPushNotification
 
+
+Pls check the youtube video for better understanding :   https://youtu.be/EAszTcaXuFo
