@@ -21,7 +21,7 @@ When data is sent from server, onMessageReceived() method will be called,
 received the data and generates notification and perform further actions if required 
 like opening a new activity etc.
 
-Other than this class all the other class is very basic and easy to understand.
+Other than this class all the other classes are very basic and easy to understand.
 
 
 In order to send push notification you will need a server side application.
