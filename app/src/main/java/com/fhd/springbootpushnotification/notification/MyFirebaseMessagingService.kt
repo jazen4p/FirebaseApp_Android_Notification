@@ -31,6 +31,25 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (remoteMessage.data.isNotEmpty()) {
             Log.e(TAG, "cameeeeeeeeeeeeeeeee iffffff")
             try {
+/*
+This is part of experiment for localhost:8080/notification/data/customdatawithtopicjson
+how to get data from json, there is ongoing issues for whitespacing-its getting error
+
+                val json = JSONObject(remoteMessage.data.toString())
+                val data = json.getJSONObject("data")
+                val title = data.getString("title")
+                val message = data.getString("message")
+                Log.e(TAG, "Data Payload: " + title)
+                Log.e(TAG, "Data Payload: " + message)
+                handleCustomDataMessage(
+                    "",
+                    title = title,
+                    message = message,
+                    timestamp = "",
+                    articleData = ""
+
+                )*/
+
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("title"))
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("message"))
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("timestamp"))
