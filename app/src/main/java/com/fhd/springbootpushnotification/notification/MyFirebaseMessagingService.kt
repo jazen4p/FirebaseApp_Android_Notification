@@ -8,6 +8,7 @@ import com.fhd.springbootpushnotification.activity.MessageShowActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.json.JSONException
+import org.json.JSONObject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -23,11 +24,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
+        Log.e(TAG, "Data Payload: " + remoteMessage?.notification?.body)
+
+
         // Check if message contains a data payload.
         if (remoteMessage.data.isNotEmpty()) {
-
+            Log.e(TAG, "cameeeeeeeeeeeeeeeee iffffff")
             try {
-
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("title"))
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("message"))
                 Log.e(TAG, "Data Payload: " + remoteMessage?.data?.get("timestamp"))
@@ -46,6 +49,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         }
         else {
+            Log.e(TAG, "cameeeeeeeeeeeeeeeee else")
             Log.e(TAG, "From: " + remoteMessage.notification?.title)
             Log.e(TAG, "From: " + remoteMessage?.notification?.body)
             handleCustomDataMessage(
@@ -57,6 +61,50 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
             )
         }
+    }
+
+    private fun handleDataMessage(json: JSONObject) {
+        Log.e(TAG, "push json: $json")
+
+        try {
+            val data = json.getJSONObject("data")
+
+            val title = data.getString("title")
+            val message = data.getString("message")
+            val imageUrl = data.getString("image")
+            val timestamp = data.getString("timestamp").toString()
+            val payload = data.getJSONObject("payload")
+
+            val articleData = payload.getString("article_data")
+
+            //Send notification data to MessageShowActivity class for showing
+            val resultIntent = Intent(applicationContext, MessageShowActivity::class.java)
+            resultIntent.putExtra("title", title)
+            resultIntent.putExtra("timestamp", timestamp)
+            resultIntent.putExtra("article_data", articleData)
+            resultIntent.putExtra("image", imageUrl)
+
+            // check for image attachment
+            if (TextUtils.isEmpty(imageUrl)) {
+                showNotificationMessage(applicationContext, title, message, timestamp, resultIntent)
+            } else {
+                // image is present, show notification with image
+                showNotificationMessageWithBigImage(
+                    applicationContext,
+                    title,
+                    message,
+                    timestamp,
+                    resultIntent,
+                    imageUrl
+                )
+            }
+
+        } catch (e: JSONException) {
+            Log.e(TAG, "Json Exception: " + e.message)
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception: " + e.message)
+        }
+
     }
 
     private fun handleCustomDataMessage(imageUrl : String, title: String, message: String,
