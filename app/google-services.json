@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "827069667693",
+    "project_id": "spring-notification-service",
+    "storage_bucket": "spring-notification-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827069667693:android:4f00c641c7bf779520a264",
+        "android_client_info": {
+          "package_name": "com.fhd.springbootpushnotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827069667693-602mfivbtogkvtc2mjq15jtqa2ki06md.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYaqD3--afvT28lty3UzzHhJUY3XjKhcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827069667693-602mfivbtogkvtc2mjq15jtqa2ki06md.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
